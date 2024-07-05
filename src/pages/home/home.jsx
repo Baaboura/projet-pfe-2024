@@ -185,7 +185,7 @@ function Home() {
                 <select
                   onChange={handleSelect}
                   value={pair}
-                  className="mb-4 p-2 bg-green-700 text-white rounded"
+                  className="mb-4 p-2 bg-green-700 text-white rounded rounded hover:bg-green-600"
                 >
                   <option value="" disabled>Select a pair</option> {/* Default option */}
                   {currencies.map(cur => (
@@ -206,7 +206,7 @@ function Home() {
               <select
                 value={selectedOption?.value || ""}
                 onChange={handleChange}
-                className="mb-4 p-2 bg-green-700 text-white rounded"
+                className="mb-4 p-2 bg-green-700 text-white rounded rounded hover:bg-green-600"
               >
                 <option value="" disabled>Select a year</option> {/* Default option */}
                 {allDatas.map(option => (
@@ -222,6 +222,9 @@ function Home() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex justify-center mt-10">
+        <button className="bg-green-700 text-white font-bold py-2 px-4 rounded hover:bg-green-600">  Synchronisation </button>
       </div>
     </Layout>
   );

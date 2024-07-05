@@ -1,52 +1,42 @@
-import { createContext, useContext, useState, useEffect } from "react"
-// interface
-const IAuth = {
-  isLoaded: false,
-  isAuthed: false,
-  user: { username: "wael" },
-  SignIn: () => { },
-}
+import { createContext, useContext, useState, useEffect } from "react";
 
-// context
-const AuthContext = createContext(IAuth)
+const AuthContext = createContext();
 
-// usecontext
-const useAuth = () => useContext(AuthContext)
-
-// context provider
 const AuthContextProvider = ({ children }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAuthed, setIsAuthed] = useState(false);
-  // eslint-disable-next-line no-unused-vars
-  const [user, setUser ] = useState({ username: "wael" })
-  useEffect(() => { preLoad() }, []);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    preLoad();
+  }, []);
 
   const preLoad = () => {
     setTimeout(() => {
-      setIsLoaded(true)
-      setIsAuthed(false)
+      setIsLoaded(true);
+      // Assume user is not authenticated initially
+      setIsAuthed(false);
+      setUser(null);
     }, 1000);
-  }
+  };
 
-  const SignIn = async (email, password) => {
-    return new Promise((r, _) => {
-      setTimeout(() => {
-        setIsAuthed(true);
-        //  r("wrong email or password.")
-      }, 2000);
-    })
-  }
+  const signIn = (userData) => {
+    setIsAuthed(true);
+    setUser(userData);
+  };
+
+  const signOut = () => {
+    setIsAuthed(false);
+    setUser(null);
+  };
 
   return (
-    <AuthContext.Provider value={{
-      isLoaded,
-      isAuthed,
-      user,
-      SignIn
-    }}>
+    <AuthContext.Provider value={{ isLoaded, isAuthed, user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
-  )
-}
-// export
-export { AuthContext, AuthContextProvider, useAuth }
+  );
+};
+
+const useAuth = () => useContext(AuthContext);
+
+export { AuthContextProvider, useAuth };

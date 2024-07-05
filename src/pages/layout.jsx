@@ -9,26 +9,14 @@ import { Link } from "react-router-dom";
 
 let menus = [
     { name: "Recherche", link: `/recherche`, icon: CiSearch },
-    { name: "Consulter Fiche SAV", link: `/consulte`, icon: CiViewBoard },
-    { name: "Consulter Fiche Sinistre", link: `/sinistre`, icon: CiViewBoard },
-    { name: "Consulter bon SAV", link: `/`, icon: CiViewBoard },
+    { name: "Données De Marché", link: `/consulte`, icon: CiViewBoard },
+    { name: "Données Synchroniser", link: `/sinistre`, icon: CiViewBoard },
+    { name: "Espace Entreprise", link: `/`, icon: CiViewBoard },
     
-    { name: "Recherche Decharge", link: `/decharge`, icon: CiSearch },
-    { name: "Suivi point de collecte", link: `#`, icon: IoIosList, haveChildren: true, children: [
-              {name: "Retour Entrepot Terminaux SWAP", link: ""},
-                
-
-    ] 
-},
-    { name: "Go for Swap", link: `#`, icon: IoIosList, haveChildren: true, children: [
-        {name: "Liste des Terminaux", link: ""},
-        {name: "Liste des Terminaux Assurés", link: ""}
-    ]
-    
-    },
-    { name: "Suivi Fiche Sinistre", link: `/`, icon: CiViewBoard },
+    { name: "Espace Bancaire", link: `/decharge`, icon: CiViewBoard },
+   
     {
-        name: "Suivi Retour Réparateurs", link: `/reparateur`, icon: IoIosList, haveChildren: true, children: [
+        name: "Paramètres", link: `/reparateur`, icon: IoIosList, haveChildren: true, children: [
             { name: "Expedier reparateur interne", link: "" },
             { name: "Expedier reparateur externe", link: "/externe" },
             { name: "Recu reparateur interne", link: "" },
