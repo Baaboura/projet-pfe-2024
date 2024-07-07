@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 let menus = [
     { name: "Recherche", link: `/recherche`, icon: CiSearch },
-    { name: "Données De Marché", link: `/consulte`, icon: CiViewBoard },
+    { name: "Données De Marché", link: `/marche`, icon: CiViewBoard },
     { name: "Données Synchroniser", link: `/sinistre`, icon: CiViewBoard },
     { name: "Espace Entreprise", link: `/`, icon: CiViewBoard },
     

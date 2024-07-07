@@ -3,6 +3,7 @@ import { useAuth } from "./hooks/auth";
 import Signin from "./pages/auth/Signin";
 import Home from "./pages/home/home";
 import RechercherPage from "./pages/recherche";
+import Marche from "./pages/marche/marche";
 
 export default function CustomRoutes() {
     const { isAuthed } = useAuth()
@@ -12,6 +13,7 @@ export default function CustomRoutes() {
     return [
         { path: "/", element: <Home />, loader: withAuth },
         { path: "/recherche", element: <RechercherPage />, loader: withAuth },
+        { path: "/marche", element: <Marche />, loader: withAuth },
 
 
         { path: "/signin", element: <Signin />, loader: withoutAuth },
