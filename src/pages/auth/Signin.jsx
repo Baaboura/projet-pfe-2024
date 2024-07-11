@@ -32,9 +32,10 @@ const Signin = () => {
   };
 
   return (
+    <div className="bg-cover bg-[url('/public/assets/img/logo3.png')] h-screen ">
     <div className="h-screen flex flex-col justify-center items-center">
-      <div className="border rounded bg-gray-100 p-5">
-        <div className="flex justify-center">
+<div className="border rounded bg-white rounded-lg shadow-lg p-5">
+<div className="flex justify-center">
           <img src="/assets/img/logo1.png" alt="" className="w-52" />
         </div>
         {
@@ -80,7 +81,7 @@ const Signin = () => {
         }
       </div>
     </div>
-  );
+    </div>);
 };
 
 export default Signin;
