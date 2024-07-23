@@ -3,6 +3,7 @@ import { Line, Bar } from "react-chartjs-2";
 import { formatData } from "../../utils";
 import Layout from "../layout";
 import 'tailwindcss/tailwind.css'; // Assurez-vous d'importer TailwindCSS
+import axios from 'axios';
 
 function Home() {
   const [interestRatesData, setInterestRatesData] = useState([]);
@@ -12,6 +13,15 @@ function Home() {
   const [pastData, setPastData] = useState({});
   const ws = useRef(null);
   const url = "https://api.pro.coinbase.com";
+
+  const handleButtonClick = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/run-vmware');
+      alert(response.data.message);
+    } catch (error) {
+      alert('Error opening VMware: ' + error.response.data.error);
+    }
+  };
 
   // Fetch interest rates data once
   useEffect(() => {
@@ -224,8 +234,12 @@ function Home() {
         </div>
       </div>
       <div className="flex justify-center mt-10">
-        <button className="bg-green-700 text-white font-bold py-2 px-4 rounded hover:bg-green-600">  Synchronisation </button>
-      </div>
+      <button
+      className="bg-green-700 text-white font-bold py-2 px-4 rounded hover:bg-green-600"
+      onClick={handleButtonClick}
+    >
+      Synchronisation
+    </button>   </div>
     </Layout>
   );
 }

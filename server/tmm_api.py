@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import requests
 from bs4 import BeautifulSoup
 from flask_cors import CORS
+import subprocess
 
 app = Flask(__name__)
 CORS(app)
@@ -61,6 +62,21 @@ def scrape_data():
             return jsonify({"error": "Less than two tables found in the HTML page."}), 404
     else:
         return jsonify({"error": "Failed to retrieve the webpage.", "status_code": response.status_code}), response.status_code
+
+@app.route('/run-vmware', methods=['POST'])
+def run_vmware():
+    try:
+        # Full path to VMware executable
+        vmware_path = r"C:\Program Files (x86)\VMware\VMware Workstation\vmware.exe"
+        subprocess.run([vmware_path], check=True)
+        return jsonify({"message": "VMware opened successfully!"}), 200
+    except subprocess.CalledProcessError as e:
+        return jsonify({"error": f"Error running VMware: {str(e)}"}), 500
+    except FileNotFoundError as e:
+        return jsonify({"error": f"VMware executable not found: {str(e)}"}), 500
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
