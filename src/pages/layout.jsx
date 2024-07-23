@@ -13,7 +13,7 @@ let menus = [
     { name: "Données Synchroniser", link: `/sinistre`, icon: CiViewBoard },
     { name: "Espace Entreprise", link: `/`, icon: CiViewBoard },
     
-    { name: "Espace Bancaire", link: `/decharge`, icon: CiViewBoard },
+    { name: "Espace Bancaire", link: `/fichierBancaire`, icon: CiViewBoard },
    
     {
         name: "Paramètres", link: `/reparateur`, icon: IoIosList, haveChildren: true, children: [
