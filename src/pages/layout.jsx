@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 let menus = [
     { name: "Recherche", link: `/recherche`, icon: CiSearch },
     { name: "Données De Marché", link: `/marche`, icon: CiViewBoard },
-    { name: "Données Synchroniser", link: `/sinistre`, icon: CiViewBoard },
-    { name: "Espace Entreprise", link: `/`, icon: CiViewBoard },
+    { name: "Données Synchroniser", link: `/donneeSyncronise`, icon: CiViewBoard },
+    { name: "Espace Entreprise", link: `/FichierEntreprise`, icon: CiViewBoard },
     
     { name: "Espace Bancaire", link: `/fichierBancaire`, icon: CiViewBoard },
    

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CreateFichierBancaire from './CreateFichierBancaire';
-import EditFichierBancaire from './EditFichierBancaire';
+//import CreateFichierBancaire from './CreateFichierBancaire';
+//import EditFichierBancaire from './EditFichierBancaire';
 import Layout from '../layout';
 
-const EspaceBanque = () => {
+const DonneesSyncronise = () => {
   const [fichierBancaires, setFichierBancaires] = useState([]);
-  const [currentView, setCurrentView] = useState('list'); // 'list', 'create', 'edit'
-  const [editFichierBancaireId, setEditFichierBancaireId] = useState(null);
+  const [currentView] = useState('list'); // 'list', 'create', 'edit'
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
@@ -33,19 +32,8 @@ const EspaceBanque = () => {
     }
   };
 
-  const handleCreateClick = () => {
-    setCurrentView('create');
-  };
 
-  const handleEditClick = (id) => {
-    setEditFichierBancaireId(id);
-    setCurrentView('edit');
-  };
 
-  const handleBackToList = () => {
-    setCurrentView('list');
-    fetchFichierBancaires();
-  };
 
   const handleRowSelect = (id) => {
     setSelectedRows((prev) =>
@@ -89,14 +77,9 @@ const EspaceBanque = () => {
       <div className="container mx-auto p-8 ">
         {currentView === 'list' && (
           <>
-            <h1 className="text-3xl font-bold mb-6 text-gray-700">Fichier Bancaire</h1>
+            <h1 className="text-3xl font-bold mb-6 text-gray-700">Fichier Synchroniser</h1>
             <div className="flex justify-between mb-6">
-              <button
-                className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition-all"
-                onClick={handleCreateClick}
-              >
-                Créer
-              </button>
+            
               {selectedRows.length > 0 && (
                 <button
                   className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition-all"
@@ -144,12 +127,7 @@ const EspaceBanque = () => {
                     <td className="py-3 px-5">{fichierBancaire.montantFinal}</td>
                     <td className="py-3 px-5">{fichierBancaire.fileName}</td>
                     <td className="py-3 px-5 flex space-x-3">
-                      <button
-                        className="bg-yellow-500 text-white px-4 py-2 rounded shadow hover:bg-yellow-600 transition-all"
-                        onClick={() => handleEditClick(fichierBancaire.id)}
-                      >
-                        Modifier
-                      </button>
+                     
                       <button
                         className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition-all"
                         onClick={() => handleDelete(fichierBancaire.id)}
@@ -164,11 +142,11 @@ const EspaceBanque = () => {
           </>
         )}
 
-        {currentView === 'create' && <CreateFichierBancaire onBack={handleBackToList} />}
-        {currentView === 'edit' && <EditFichierBancaire id={editFichierBancaireId} onBack={handleBackToList} />}
+
+ 
       </div>
     </Layout>
   );
 };
 
-export default EspaceBanque;
+export default DonneesSyncronise;

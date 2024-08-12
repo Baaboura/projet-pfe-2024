@@ -185,53 +185,57 @@ function Home() {
   return (
     <Layout>
       <div className="playground" style={{ display: "flex" }}>
-        <div className="block-left" style={{ width: "50%", padding: "20px", borderRadius: "10px", display: "inline-block" }}>
-          <div className="dashboard p-4 bg-white text-black rounded-lg shadow-lg">
-            {price === "0.0" ? (
-              <div>Loading...</div>
-            ) : (
-              <div className="flex flex-col items-start w-full">
-                <h2 className="text-2xl font-bold mb-4">{`$${price}`}</h2>
-                <select
-                  onChange={handleSelect}
-                  value={pair}
-                  className="mb-4 p-2 bg-green-700 text-white rounded rounded hover:bg-green-600"
-                >
-                  <option value="" disabled>Select a pair</option> {/* Default option */}
-                  {currencies.map(cur => (
-                    <option key={cur.id} value={cur.id}>{cur.display_name}</option>
-                  ))}
-                </select>
-                <div className="chart-container w-full h-[300px]">
-                  <Line data={pastData} options={opts} />
-                </div>
-              </div>
-            )}
-          </div>
+      <div className="block-left" style={{ width: "50%", padding: "20px", borderRadius: "10px", display: "inline-block" }}>
+  <h1 className="text-4xl font-bold mb-6">Taux de devise</h1> {/* Increased font size */}
+  <div className="dashboard p-4 bg-white text-black rounded-lg shadow-lg">
+    {price === "0.0" ? (
+      <div>Loading...</div>
+    ) : (
+      <div className="flex flex-col items-start w-full">
+        <h2 className="text-2xl font-bold mb-4">{`$${price}`}</h2>
+        <select
+          onChange={handleSelect}
+          value={pair}
+          className="mb-4 p-2 bg-green-700 text-white rounded hover:bg-green-600"
+        >
+          <option value="" disabled>Select a pair</option> {/* Default option */}
+          {currencies.map(cur => (
+            <option key={cur.id} value={cur.id}>{cur.display_name}</option>
+          ))}
+        </select>
+        <div className="chart-container w-full h-[300px]">
+          <Line data={pastData} options={opts} />
         </div>
-        <div className="block-right" style={{ width: "50%", padding: "20px", borderRadius: "10px", display: "inline-block" }}>
-          <div className="dashboard p-4 bg-white text-black rounded-lg shadow-lg">
-            <div className="flex flex-col items-start w-full">
-              <h2 className="text-2xl font-bold mb-4">Taux du marché monétaire TMM</h2>
-              <select
-                value={selectedOption?.value || ""}
-                onChange={handleChange}
-                className="mb-4 p-2 bg-green-700 text-white rounded rounded hover:bg-green-600"
-              >
-                <option value="" disabled>Select a year</option> {/* Default option */}
-                {allDatas.map(option => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-              </select>
-              <div className="chart-container w-full h-[300px]">
-                <Bar
-                  data={dataOptions[selectedOption?.value]}
-                  options={{ maintainAspectRatio: false }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
+    )}
+  </div>
+</div>
+
+<div className="block-right" style={{ width: "50%", padding: "20px", borderRadius: "10px", display: "inline-block" }}>
+  <h1 className="text-4xl font-bold mb-6">Taux du marché monétaire</h1> {/* Add a bigger title */}
+  <div className="dashboard p-4 bg-white text-black rounded-lg shadow-lg">
+    <div className="flex flex-col items-start w-full">
+      <h2 className="text-2xl font-bold mb-4"> TMM</h2>
+      <select
+        value={selectedOption?.value || ""}
+        onChange={handleChange}
+        className="mb-4 p-2 bg-green-700 text-white rounded hover:bg-green-600"
+      >
+        <option value="" disabled>Select a year</option> {/* Default option */}
+        {allDatas.map(option => (
+          <option key={option.value} value={option.value}>{option.label}</option>
+        ))}
+      </select>
+      <div className="chart-container w-full h-[300px]">
+        <Bar
+          data={dataOptions[selectedOption?.value]}
+          options={{ maintainAspectRatio: false }}
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
       </div>
       <div className="flex justify-center mt-10">
       <button

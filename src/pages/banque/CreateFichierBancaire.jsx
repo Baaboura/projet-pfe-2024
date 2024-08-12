@@ -15,6 +15,7 @@ const CreateFichierBancaire = ({ onBack }) => {
   const handleCreate = async () => {
     try {
       await axios.post('http://localhost:8080/fichierbancaire/addFichierBancaire', fichierBancaire);
+      console.log(fichierBancaire);
       onBack();
     } catch (error) {
       console.error('Error creating fichier bancaire', error);
@@ -70,13 +71,13 @@ const CreateFichierBancaire = ({ onBack }) => {
       </div>
       <div className="flex justify-end mt-6">
         <button
-          className="bg-gray-500 text-white px-6 py-2 rounded-lg shadow hover:bg-gray-600 transition-all mr-3"
+          className="bg-gray-600 text-white px-6 py-2 rounded-lg shadow hover:bg-gray-700 transition-all mr-3"
           onClick={onBack}
         >
           Retour
         </button>
         <button
-          className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-600 transition-all"
+          className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition-all"
           onClick={handleCreate}
         >
           Créer

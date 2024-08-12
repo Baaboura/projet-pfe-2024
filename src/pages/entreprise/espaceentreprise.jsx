@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CreateFichierBancaire from './CreateFichierBancaire';
-import EditFichierBancaire from './EditFichierBancaire';
+import CreateFichierEntreprise from './CreateFichierEntreprise';
+import EditFichierEntreprise from './EditFichierEntreprise';
 import Layout from '../layout';
 
-const EspaceBanque = () => {
-  const [fichierBancaires, setFichierBancaires] = useState([]);
+const EspaceEntreprise = () => {
+  const [fichierEntreprises, setFichierEntreprises] = useState([]);
   const [currentView, setCurrentView] = useState('list'); // 'list', 'create', 'edit'
-  const [editFichierBancaireId, setEditFichierBancaireId] = useState(null);
+  const [editFichierEntrepriseId, setEditFichierEntrepriseId] = useState(null);
   const [selectedRows, setSelectedRows] = useState([]);
 
   useEffect(() => {
-    fetchFichierBancaires();
+    fetchFichierEntreprises();
   }, []);
 
-  const fetchFichierBancaires = async () => {
+  const fetchFichierEntreprises = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/fichierbancaire/getAllFichierBancaires');
+      const response = await axios.get('http://localhost:8080/fichierentreprise/getAllFichierEntreprises');
       console.log('Fetched data:', response.data);
-      setFichierBancaires(response.data);
+      setFichierEntreprises(response.data);
     } catch (error) {
       console.error('Error fetching data', error);
     }
@@ -26,10 +26,10 @@ const EspaceBanque = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/fichierbancaire/deleteFichierBancaire/${id}`);
-      fetchFichierBancaires();
+      await axios.delete(`http://localhost:8080/fichierentreprise/deleteFichierEntreprise/${id}`);
+      fetchFichierEntreprises();
     } catch (error) {
-      console.error('Error deleting fichier bancaire', error);
+      console.error('Error deleting fichier entreprise', error);
     }
   };
 
@@ -38,13 +38,13 @@ const EspaceBanque = () => {
   };
 
   const handleEditClick = (id) => {
-    setEditFichierBancaireId(id);
+    setEditFichierEntrepriseId(id);
     setCurrentView('edit');
   };
 
   const handleBackToList = () => {
     setCurrentView('list');
-    fetchFichierBancaires();
+    fetchFichierEntreprises();
   };
 
   const handleRowSelect = (id) => {
@@ -54,15 +54,15 @@ const EspaceBanque = () => {
   };
 
   const handleSelectAll = () => {
-    if (selectedRows.length === fichierBancaires.length) {
+    if (selectedRows.length === fichierEntreprises.length) {
       setSelectedRows([]);
     } else {
-      setSelectedRows(fichierBancaires.map((fb) => fb.id));
+      setSelectedRows(fichierEntreprises.map((fb) => fb.id));
     }
   };
 
   const handleExport = () => {
-    const selectedData = fichierBancaires.filter((fb) => selectedRows.includes(fb.id));
+    const selectedData = fichierEntreprises.filter((fb) => selectedRows.includes(fb.id));
     const printContent = selectedData.map((fb) => (
       `<tr key=${fb.id}>
         <td>${new Date(fb.dateDeCreation).toLocaleString()}</td>
@@ -89,7 +89,7 @@ const EspaceBanque = () => {
       <div className="container mx-auto p-8 ">
         {currentView === 'list' && (
           <>
-            <h1 className="text-3xl font-bold mb-6 text-gray-700">Fichier Bancaire</h1>
+            <h1 className="text-3xl font-bold mb-6 text-gray-700">Fichier Entreprise</h1>
             <div className="flex justify-between mb-6">
               <button
                 className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition-all"
@@ -113,7 +113,7 @@ const EspaceBanque = () => {
                     <input
                       type="checkbox"
                       onChange={handleSelectAll}
-                      checked={selectedRows.length === fichierBancaires.length}
+                      checked={selectedRows.length === fichierEntreprises.length}
                     />
                   </th>
                   <th className="py-3 px-5">Date de Creation</th>
@@ -127,32 +127,32 @@ const EspaceBanque = () => {
                 </tr>
               </thead>
               <tbody>
-                {fichierBancaires.map((fichierBancaire) => (
-                  <tr key={fichierBancaire.id} className="border-b hover:bg-gray-50 transition">
+                {fichierEntreprises.map((fichierEntreprise) => (
+                  <tr key={fichierEntreprise.id} className="border-b hover:bg-gray-50 transition">
                     <td className="py-3 px-5">
                       <input
                         type="checkbox"
-                        checked={selectedRows.includes(fichierBancaire.id)}
-                        onChange={() => handleRowSelect(fichierBancaire.id)}
+                        checked={selectedRows.includes(fichierEntreprise.id)}
+                        onChange={() => handleRowSelect(fichierEntreprise.id)}
                       />
                     </td>
-                    <td className="py-3 px-5">{new Date(fichierBancaire.dateDeCreation).toLocaleString()}</td>
-                    <td className="py-3 px-5">{fichierBancaire.codeCompte}</td>
-                    <td className="py-3 px-5">{fichierBancaire.Rib}</td>
-                    <td className="py-3 px-5">{fichierBancaire.devise}</td>
-                    <td className="py-3 px-5">{fichierBancaire.montantInitial}</td>
-                    <td className="py-3 px-5">{fichierBancaire.montantFinal}</td>
-                    <td className="py-3 px-5">{fichierBancaire.fileName}</td>
+                    <td className="py-3 px-5">{new Date(fichierEntreprise.dateDeCreation).toLocaleString()}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.codeCompte}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.Rib}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.devise}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.montantInitial}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.montantFinal}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.fileName}</td>
                     <td className="py-3 px-5 flex space-x-3">
                       <button
                         className="bg-yellow-500 text-white px-4 py-2 rounded shadow hover:bg-yellow-600 transition-all"
-                        onClick={() => handleEditClick(fichierBancaire.id)}
+                        onClick={() => handleEditClick(fichierEntreprise.id)}
                       >
                         Modifier
                       </button>
                       <button
                         className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition-all"
-                        onClick={() => handleDelete(fichierBancaire.id)}
+                        onClick={() => handleDelete(fichierEntreprise.id)}
                       >
                         Supprimer
                       </button>
@@ -164,11 +164,11 @@ const EspaceBanque = () => {
           </>
         )}
 
-        {currentView === 'create' && <CreateFichierBancaire onBack={handleBackToList} />}
-        {currentView === 'edit' && <EditFichierBancaire id={editFichierBancaireId} onBack={handleBackToList} />}
+        {currentView === 'create' && <CreateFichierEntreprise onBack={handleBackToList} />}
+        {currentView === 'edit' && <EditFichierEntreprise id={editFichierEntrepriseId} onBack={handleBackToList} />}
       </div>
     </Layout>
   );
 };
 
-export default EspaceBanque;
+export default EspaceEntreprise;
