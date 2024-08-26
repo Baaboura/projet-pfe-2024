@@ -43,11 +43,11 @@ const EditFichierEntreprise = ({ id, onBack }) => {
       <h1 className="text-3xl font-bold mb-6 text-gray-700">Modifier Fichier Entreprise</h1>
       <form>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Date de Création</label>
+          <label className="block text-gray-700 mb-2">Date de transaction</label>
           <input
             type="datetime-local"
             name="dateDeCreation"
-            value={fichierEntreprise.dateDeCreation}
+            value={fichierEntreprise.date_de_transaction}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -57,17 +57,17 @@ const EditFichierEntreprise = ({ id, onBack }) => {
           <input
             type="text"
             name="codeCompte"
-            value={fichierEntreprise.codeCompte}
+            value={fichierEntreprise.code_compte}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">RIB</label>
+          <label className="block text-gray-700 mb-2">code flux</label>
           <input
             type="text"
             name="Rib"
-            value={fichierEntreprise.Rib}
+            value={fichierEntreprise.code_flux}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
@@ -83,31 +83,31 @@ const EditFichierEntreprise = ({ id, onBack }) => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Montant Initial</label>
+          <label className="block text-gray-700 mb-2">Montant de transaction</label>
           <input
             type="number"
             name="montantInitial"
-            value={fichierEntreprise.montantInitial}
+            value={fichierEntreprise.montant_de_transition}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Montant Final</label>
+          <label className="block text-gray-700 mb-2"> Reference</label>
           <input
             type="number"
             name="montantFinal"
-            value={fichierEntreprise.montantFinal}
+            value={fichierEntreprise.reference}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Nom du Fichier</label>
+          <label className="block text-gray-700 mb-2">Libelle</label>
           <input
             type="text"
             name="fileName"
-            value={fichierEntreprise.fileName}
+            value={fichierEntreprise.libelle}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />

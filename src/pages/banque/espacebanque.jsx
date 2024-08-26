@@ -67,7 +67,7 @@ const EspaceBanque = () => {
       `<tr key=${fb.id}>
         <td>${new Date(fb.dateDeCreation).toLocaleString()}</td>
         <td>${fb.codeCompte}</td>
-        <td>${fb.Rib}</td>
+        <td>${fb.rib}</td>
         <td>${fb.devise}</td>
         <td>${fb.montantInitial}</td>
         <td>${fb.montantFinal}</td>
@@ -138,7 +138,7 @@ const EspaceBanque = () => {
                     </td>
                     <td className="py-3 px-5">{new Date(fichierBancaire.dateDeCreation).toLocaleString()}</td>
                     <td className="py-3 px-5">{fichierBancaire.codeCompte}</td>
-                    <td className="py-3 px-5">{fichierBancaire.Rib}</td>
+                    <td className="py-3 px-5">{fichierBancaire.rib}</td>
                     <td className="py-3 px-5">{fichierBancaire.devise}</td>
                     <td className="py-3 px-5">{fichierBancaire.montantInitial}</td>
                     <td className="py-3 px-5">{fichierBancaire.montantFinal}</td>

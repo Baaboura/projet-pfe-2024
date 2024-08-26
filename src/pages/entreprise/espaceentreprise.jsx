@@ -16,7 +16,7 @@ const EspaceEntreprise = () => {
 
   const fetchFichierEntreprises = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/fichierentreprise/getAllFichierEntreprises');
+      const response = await axios.get('http://localhost:8080/fichierentreprise/getAllFichierEntreprise');
       console.log('Fetched data:', response.data);
       setFichierEntreprises(response.data);
     } catch (error) {
@@ -65,13 +65,13 @@ const EspaceEntreprise = () => {
     const selectedData = fichierEntreprises.filter((fb) => selectedRows.includes(fb.id));
     const printContent = selectedData.map((fb) => (
       `<tr key=${fb.id}>
-        <td>${new Date(fb.dateDeCreation).toLocaleString()}</td>
-        <td>${fb.codeCompte}</td>
-        <td>${fb.Rib}</td>
+        <td>${new Date(fb.date_de_transaction).toLocaleString()}</td>
+        <td>${fb.code_compte}</td>
+        <td>${fb.code_flux}</td>
         <td>${fb.devise}</td>
-        <td>${fb.montantInitial}</td>
-        <td>${fb.montantFinal}</td>
-        <td>${fb.fileName}</td>
+        <td>${fb.montant_de_transaction}</td>
+        <td>${fb.reference}</td>
+        <td>${fb.libelle}</td>
       </tr>`
     )).join('');
 
@@ -136,13 +136,13 @@ const EspaceEntreprise = () => {
                         onChange={() => handleRowSelect(fichierEntreprise.id)}
                       />
                     </td>
-                    <td className="py-3 px-5">{new Date(fichierEntreprise.dateDeCreation).toLocaleString()}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.codeCompte}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.Rib}</td>
+                    <td className="py-3 px-5">{new Date(fichierEntreprise.date_de_transaction).toLocaleString()}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.code_compte}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.code_flux}</td>
                     <td className="py-3 px-5">{fichierEntreprise.devise}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.montantInitial}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.montantFinal}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.fileName}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.montant_de_transaction}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.reference}</td>
+                    <td className="py-3 px-5">{fichierEntreprise.libelle}</td>
                     <td className="py-3 px-5 flex space-x-3">
                       <button
                         className="bg-yellow-500 text-white px-4 py-2 rounded shadow hover:bg-yellow-600 transition-all"

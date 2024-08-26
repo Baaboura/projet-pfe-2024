@@ -21,7 +21,7 @@ const Signin = () => {
     };
     try {
       const response = await axios.post("http://localhost:8080/auth/login", data);
-      console.log("Response received", response.data);
+       console.log("Response received", response.data);
       signIn(data); // Update authentication state
       navigate('/', { state: { UserInfo: data } });
     } catch (error) {

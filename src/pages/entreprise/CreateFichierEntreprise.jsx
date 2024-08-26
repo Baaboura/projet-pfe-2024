@@ -3,30 +3,83 @@ import axios from 'axios';
 
 const CreateFichierEntreprise = ({ onBack }) => {
   const [fichierEntreprise, setFichierEntreprise] = useState({
-    dateDeCreation: '',
-    codeCompte: '',
-    Rib: '',
+    date_de_transaction: '',
+    code_compte: '',
+    code_flux: '',
     devise: '',
-    montantInitial: '',
-    montantFinal: '',
-    fileName: '',
+    montant_de_transaction: '',
+    reference: '',
+    libelle: '',
   });
 
+  const [errors, setErrors] = useState({
+    date_de_transaction: '',
+    code_compte: '',
+    code_flux: '',
+    devise: '',
+    montant_de_transaction: '',
+    reference: '',
+    libelle: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFichierEntreprise({ ...fichierEntreprise, [name]: value });
+  };
+
+  const validate = () => {
+    let isValid = true;
+    const newErrors = {};
+
+    // Validate each field
+    if (!fichierEntreprise.date_de_transaction) {
+      newErrors.date_de_transaction = 'Date de transaction is required.';
+      isValid = false;
+    }
+    if (!fichierEntreprise.code_compte.trim()) {
+      newErrors.code_compte = 'Code Compte is required.';
+      isValid = false;
+    }
+    if (!fichierEntreprise.code_flux.trim()) {
+      newErrors.code_flux = 'Code Flux is required.';
+      isValid = false;
+    }
+    if (!fichierEntreprise.devise.trim()) {
+      newErrors.devise = 'Devise is required.';
+      isValid = false;
+    }
+    if (!fichierEntreprise.montant_de_transaction || isNaN(fichierEntreprise.montant_de_transaction) || parseFloat(fichierEntreprise.montant_de_transaction) <= 0) {
+      newErrors.montant_de_transaction = 'Montant de transaction must be a positive number.';
+      isValid = false;
+    }
+    if (!fichierEntreprise.reference || isNaN(fichierEntreprise.reference) || parseFloat(fichierEntreprise.reference) <= 0) {
+      newErrors.reference = 'Reference must be a positive number.';
+      isValid = false;
+    }
+    if (!fichierEntreprise.libelle.trim()) {
+      newErrors.libelle = 'Libelle is required.';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
   const handleCreate = async () => {
+    if (!validate()) return;
+
     try {
-      await axios.post('http://localhost:8080/fichierentreprise/addFichierEntreprise', fichierEntreprise);
+
+      const dataToSend = {
+        ...fichierEntreprise,
+        montant_de_transaction: parseFloat(fichierEntreprise.montant_de_transaction),
+      };
+      console.log(dataToSend);  
+      await axios.post('http://localhost:8080/fichierentreprise/addFichierEntreprise', dataToSend);
       onBack();
     } catch (error) {
       console.error('Error creating fichier entreprise', error);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFichierEntreprise((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
   };
 
   return (
@@ -34,34 +87,37 @@ const CreateFichierEntreprise = ({ onBack }) => {
       <h1 className="text-3xl font-bold mb-6 text-gray-700">Créer Fichier Entreprise</h1>
       <form>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Date de Création</label>
+          <label className="block text-gray-700 mb-2">Date de Transaction</label>
           <input
             type="datetime-local"
-            name="dateDeCreation"
-            value={fichierEntreprise.dateDeCreation}
+            name="date_de_transaction"
+            value={fichierEntreprise.date_de_transaction}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.date_de_transaction && <p className="text-red-500 text-sm">{errors.date_de_transaction}</p>}
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">Code Compte</label>
           <input
             type="text"
-            name="codeCompte"
-            value={fichierEntreprise.codeCompte}
+            name="code_compte"
+            value={fichierEntreprise.code_compte}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.code_compte && <p className="text-red-500 text-sm">{errors.code_compte}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">RIB</label>
+          <label className="block text-gray-700 mb-2">Code Flux</label>
           <input
             type="text"
-            name="Rib"
-            value={fichierEntreprise.Rib}
+            name="code_flux"
+            value={fichierEntreprise.code_flux}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.code_flux && <p className="text-red-500 text-sm">{errors.code_flux}</p>}
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2">Devise</label>
@@ -72,36 +128,40 @@ const CreateFichierEntreprise = ({ onBack }) => {
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.devise && <p className="text-red-500 text-sm">{errors.devise}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Montant Initial</label>
+          <label className="block text-gray-700 mb-2">Montant de Transaction</label>
           <input
             type="number"
-            name="montantInitial"
-            value={fichierEntreprise.montantInitial}
+            name="montant_de_transaction"
+            value={fichierEntreprise.montant_de_transaction}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.montant_de_transaction && <p className="text-red-500 text-sm">{errors.montant_de_transaction}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Montant Final</label>
+          <label className="block text-gray-700 mb-2">Reference</label>
           <input
             type="number"
-            name="montantFinal"
-            value={fichierEntreprise.montantFinal}
+            name="reference"
+            value={fichierEntreprise.reference}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.reference && <p className="text-red-500 text-sm">{errors.reference}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Nom du Fichier</label>
+          <label className="block text-gray-700 mb-2">Libelle</label>
           <input
             type="text"
-            name="fileName"
-            value={fichierEntreprise.fileName}
+            name="libelle"
+            value={fichierEntreprise.libelle}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg"
           />
+          {errors.libelle && <p className="text-red-500 text-sm">{errors.libelle}</p>}
         </div>
         <div className="flex justify-between">
           <button

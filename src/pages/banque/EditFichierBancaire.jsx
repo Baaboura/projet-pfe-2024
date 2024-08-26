@@ -5,7 +5,7 @@ const EditFichierBancaire = ({ id, onBack }) => {
   const [fichierBancaire, setFichierBancaire] = useState({
     dateDeCreation: '',
     codeCompte: '',
-    Rib: '',
+    rib: '',
     devise: '',
     montantInitial: '',
     montantFinal: '',
@@ -48,8 +48,8 @@ const EditFichierBancaire = ({ id, onBack }) => {
         <input
           type="text"
           placeholder="RIB"
-          value={fichierBancaire.Rib}
-          onChange={(e) => setFichierBancaire({ ...fichierBancaire, Rib: e.target.value })}
+          value={fichierBancaire.rib}
+          onChange={(e) => setFichierBancaire({ ...fichierBancaire, rib: e.target.value })}
           className="block w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
