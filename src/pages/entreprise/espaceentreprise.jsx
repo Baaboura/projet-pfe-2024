@@ -33,9 +33,9 @@ const EspaceEntreprise = () => {
     }
   };
 
-  const handleCreateClick = () => {
+ /*  const handleCreateClick = () => {
     setCurrentView('create');
-  };
+  }; */
 
   const handleEditClick = (id) => {
     setEditFichierEntrepriseId(id);
@@ -65,7 +65,7 @@ const EspaceEntreprise = () => {
     const selectedData = fichierEntreprises.filter((fb) => selectedRows.includes(fb.id));
     const printContent = selectedData.map((fb) => (
       `<tr key=${fb.id}>
-        <td>${new Date(fb.date_de_transaction).toLocaleString()}</td>
+        <td>${new Date(fb.date_de_transaction).toLocaleDateString('fr-FR')}</td>
         <td>${fb.code_compte}</td>
         <td>${fb.code_flux}</td>
         <td>${fb.devise}</td>
@@ -91,12 +91,12 @@ const EspaceEntreprise = () => {
           <>
             <h1 className="text-3xl font-bold mb-6 text-gray-700">Fichier Entreprise</h1>
             <div className="flex justify-between mb-6">
-              <button
+              {/* <button
                 className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition-all"
                 onClick={handleCreateClick}
               >
                 Créer
-              </button>
+              </button> */}
               {selectedRows.length > 0 && (
                 <button
                   className="bg-green-600 text-white px-6 py-2 rounded shadow hover:bg-green-700 transition-all"
@@ -107,60 +107,60 @@ const EspaceEntreprise = () => {
               )}
             </div>
             <table className="min-w-full bg-white rounded-lg shadow overflow-hidden">
-              <thead className="bg-sky-900 text-white">
-                <tr>
-                  <th className="py-3 px-5">
-                    <input
-                      type="checkbox"
-                      onChange={handleSelectAll}
-                      checked={selectedRows.length === fichierEntreprises.length}
-                    />
-                  </th>
-                  <th className="py-3 px-5">Date de Creation</th>
-                  <th className="py-3 px-5">Code Compte</th>
-                  <th className="py-3 px-5">RIB</th>
-                  <th className="py-3 px-5">Devise</th>
-                  <th className="py-3 px-5">Montant Initial</th>
-                  <th className="py-3 px-5">Montant Final</th>
-                  <th className="py-3 px-5">File Name</th>
-                  <th className="py-3 px-5">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {fichierEntreprises.map((fichierEntreprise) => (
-                  <tr key={fichierEntreprise.id} className="border-b hover:bg-gray-50 transition">
-                    <td className="py-3 px-5">
-                      <input
-                        type="checkbox"
-                        checked={selectedRows.includes(fichierEntreprise.id)}
-                        onChange={() => handleRowSelect(fichierEntreprise.id)}
-                      />
-                    </td>
-                    <td className="py-3 px-5">{new Date(fichierEntreprise.date_de_transaction).toLocaleString()}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.code_compte}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.code_flux}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.devise}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.montant_de_transaction}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.reference}</td>
-                    <td className="py-3 px-5">{fichierEntreprise.libelle}</td>
-                    <td className="py-3 px-5 flex space-x-3">
-                      <button
-                        className="bg-yellow-500 text-white px-4 py-2 rounded shadow hover:bg-yellow-600 transition-all"
-                        onClick={() => handleEditClick(fichierEntreprise.id)}
-                      >
-                        Modifier
-                      </button>
-                      <button
-                        className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition-all"
-                        onClick={() => handleDelete(fichierEntreprise.id)}
-                      >
-                        Supprimer
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+  <thead className="bg-sky-900 text-white">
+    <tr>
+      <th className="py-3 px-5 text-center">
+        <input
+          type="checkbox"
+          onChange={handleSelectAll}
+          checked={selectedRows.length === fichierEntreprises.length}
+        />
+      </th>
+      <th className="py-3 px-5 text-center">Date de Transaction</th>
+      <th className="py-3 px-5 text-center">Code Compte</th>
+      <th className="py-3 px-5 text-center">Code Flux</th>
+      <th className="py-3 px-5 text-center">Devise</th>
+      <th className="py-3 px-3  text-center">Montant de Transaction</th>
+      <th className="py-3 px-5 text-center">Libellé</th>
+      <th className="py-3 px-5 text-center">Référence</th>
+      <th className="py-3 px-5 text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {fichierEntreprises.map((fichierEntreprise) => (
+      <tr key={fichierEntreprise.id} className="border-b hover:bg-gray-50 transition">
+        <td className="py-3 px-5 text-center">
+          <input
+            type="checkbox"
+            checked={selectedRows.includes(fichierEntreprise.id)}
+            onChange={() => handleRowSelect(fichierEntreprise.id)}
+          />
+        </td>
+        <td className="py-3 px-5 w-24 text-center">
+          {new Date(fichierEntreprise.date_de_transaction).toLocaleDateString('fr-FR')}
+        </td>
+        <td className="py-3 px-5 text-center">{fichierEntreprise.code_compte}</td>
+        <td className="py-3 px-5 text-center">{fichierEntreprise.code_flux}</td>
+        <td className="py-3 px-5 text-center">{fichierEntreprise.devise}</td>
+        <td className="py-3 px-5 text-center">
+          {fichierEntreprise.montant_de_transaction} €
+        </td>
+        <td className="py-3 px-5 text-center">{fichierEntreprise.reference}</td>
+        <td className="py-3 px-5 text-center">{fichierEntreprise.libelle}</td>
+        <td className="py-3 px-5 flex justify-center space-x-3">
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded shadow hover:bg-red-600 transition-all"
+            onClick={() => handleDelete(fichierEntreprise.id)}
+          >
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+
           </>
         )}
 

@@ -7,6 +7,10 @@ import Marche from "./pages/marche/marche";
 import EspaceBanque from "./pages/banque/espacebanque";
 import EspaceEntreprise from "./pages/entreprise/espaceentreprise";
 import DonneesSyncronise from "./pages/syncronise/DonneSyncronise";
+import Alert  from "./pages/alert/alert";
+import Notification  from "./pages/notification/notification";
+import Parametre from "./pages/parametre/parametre";
+
 
 export default function CustomRoutes() {
     const { isAuthed } = useAuth()
@@ -20,6 +24,9 @@ export default function CustomRoutes() {
         { path: "/fichierBancaire", element: <EspaceBanque/>, loader: withAuth },
         { path: "/donneeSyncronise", element: <DonneesSyncronise/>, loader: withAuth },
         { path: "/fichierEntreprise", element: <EspaceEntreprise/>, loader: withAuth },
+        { path: "/alert", element: <Alert/>, loader: withAuth },
+        { path: "/notifications", element: <Notification/>, loader: withAuth },
+        { path: "/parametre", element: <Parametre/>, loader: withAuth },
 
 
 

@@ -142,7 +142,7 @@ const CreateFichierEntreprise = ({ onBack }) => {
           {errors.montant_de_transaction && <p className="text-red-500 text-sm">{errors.montant_de_transaction}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Reference</label>
+          <label className="block text-gray-700 mb-2">Libellé</label>
           <input
             type="number"
             name="reference"
@@ -153,7 +153,7 @@ const CreateFichierEntreprise = ({ onBack }) => {
           {errors.reference && <p className="text-red-500 text-sm">{errors.reference}</p>}
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 mb-2">Libelle</label>
+          <label className="block text-gray-700 mb-2">Référence</label>
           <input
             type="text"
             name="libelle"

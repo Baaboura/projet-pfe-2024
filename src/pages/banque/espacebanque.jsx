@@ -119,9 +119,9 @@ const EspaceBanque = () => {
                   <th className="py-3 px-5">Date de Creation</th>
                   <th className="py-3 px-5">Code Compte</th>
                   <th className="py-3 px-5">RIB</th>
-                  <th className="py-3 px-5">Devise</th>
-                  <th className="py-3 px-5">Montant Initial</th>
-                  <th className="py-3 px-5">Montant Final</th>
+                  <th className="py-3 px-5 text-center">Devise</th>
+                  <th className="py-3 px-8">Montant Initial</th>
+                  <th className="py-3 px-8">Montant Final</th>
                   <th className="py-3 px-5">File Name</th>
                   <th className="py-3 px-5">Actions</th>
                 </tr>
@@ -136,12 +136,12 @@ const EspaceBanque = () => {
                         onChange={() => handleRowSelect(fichierBancaire.id)}
                       />
                     </td>
-                    <td className="py-3 px-5">{new Date(fichierBancaire.dateDeCreation).toLocaleString()}</td>
+                    <td className="py-3 px-5">{new Date(fichierBancaire.dateDeCreation).toLocaleDateString('fr-FR')}</td>
                     <td className="py-3 px-5">{fichierBancaire.codeCompte}</td>
                     <td className="py-3 px-5">{fichierBancaire.rib}</td>
-                    <td className="py-3 px-5">{fichierBancaire.devise}</td>
-                    <td className="py-3 px-5">{fichierBancaire.montantInitial}</td>
-                    <td className="py-3 px-5">{fichierBancaire.montantFinal}</td>
+                    <td className="py-3 px-5 text-center">{fichierBancaire.devise}</td>
+                    <td className="py-3 px-5">{fichierBancaire.montantInitial} €</td>
+                    <td className="py-3 px-5">{fichierBancaire.montantFinal} €</td>
                     <td className="py-3 px-5">{fichierBancaire.fileName}</td>
                     <td className="py-3 px-5 flex space-x-3">
                       <button
