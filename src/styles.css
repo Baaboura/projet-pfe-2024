@@ -1,0 +1,9 @@
+.img-rectangle {
+    clip-path:ellipse(33% 50%);
+    background: white;
+}
+
+.img-carree {
+    height: 59px;
+    width: 92px;
+}

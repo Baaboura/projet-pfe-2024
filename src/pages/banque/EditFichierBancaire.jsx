@@ -15,7 +15,7 @@ const EditFichierBancaire = ({ id, onBack }) => {
   useEffect(() => {
     const fetchFichierBancaire = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/fichierbancaire/getFichierBancaireById/${id}`);
+        const response = await axios.get(`http://localhost:8030/fichierbancaire/getFichierBancaireById/${id}`);
         setFichierBancaire(response.data);
       } catch (error) {
         console.error('Error fetching fichier bancaire', error);
@@ -27,7 +27,7 @@ const EditFichierBancaire = ({ id, onBack }) => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8080/fichierbancaire/updateFichierBancaireById/${id}`, fichierBancaire);
+      await axios.put(`http://localhost:8030/fichierbancaire/updateFichierBancaireById/${id}`, fichierBancaire);
       onBack();
     } catch (error) {
       console.error('Error updating fichier bancaire', error);

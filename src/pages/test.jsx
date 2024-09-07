@@ -62,10 +62,10 @@ function App() {
             // This part cannot be done in a React application due to security restrictions in browsers
             // Instead, you can save the data to localStorage or send it to a backend server for storage
           } else {
-            console.log("Less than two tables found in the HTML page.");
+            // console.log("Less than two tables found in the HTML page.");
           }
         } else {
-          console.log("Failed to retrieve the webpage. Status code:", response.status);
+          // console.log("Failed to retrieve the webpage. Status code:", response.status);
         }
       } catch (error) {
         console.error("Error:", error);

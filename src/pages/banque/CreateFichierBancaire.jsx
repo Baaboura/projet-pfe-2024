@@ -63,8 +63,8 @@ const CreateFichierBancaire = ({ onBack }) => {
         montantInitial: parseFloat(fichierBancaire.montantInitial),
         montantFinal: parseFloat(fichierBancaire.montantFinal),
       };
-      await axios.post('http://localhost:8080/fichierbancaire/addFichierBancaire', dataToSend);
-      console.log(dataToSend);
+      await axios.post('http://localhost:8030/fichierbancaire/addFichierBancaire', dataToSend);
+      // console.log(dataToSend);
       onBack();
     } catch (error) {
       console.error('Error creating fichier bancaire', error);

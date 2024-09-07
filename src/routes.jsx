@@ -14,12 +14,10 @@ import Parametre from "./pages/parametre/parametre";
 
 export default function CustomRoutes() {
     const { isAuthed } = useAuth()
-
-    const withAuth = () => (isAuthed) ? null : redirect("/signin")
+    const withAuth = () => (localStorage.getItem('user')) ? null : redirect("/signin")
     const withoutAuth = () => (!isAuthed) ? null : redirect("/")
     return [
         { path: "/", element: <Home />, loader: withAuth },
-        { path: "/recherche", element: <RechercherPage />, loader: withAuth },
         { path: "/marche", element: <Marche />, loader: withAuth },
         { path: "/fichierBancaire", element: <EspaceBanque/>, loader: withAuth },
         { path: "/donneeSyncronise", element: <DonneesSyncronise/>, loader: withAuth },
@@ -27,9 +25,6 @@ export default function CustomRoutes() {
         { path: "/alert", element: <Alert/>, loader: withAuth },
         { path: "/notifications", element: <Notification/>, loader: withAuth },
         { path: "/parametre", element: <Parametre/>, loader: withAuth },
-
-
-
         { path: "/signin", element: <Signin />, loader: withoutAuth },
     ]
 }

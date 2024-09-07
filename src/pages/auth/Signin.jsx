@@ -9,6 +9,7 @@ const Signin = () => {
   const [userName, setUserName] = useState('');
   const [passWord, setPassWord] = useState('');
   const [isLoad, setIsLoad] = useState(false);
+  const [test, setTest] = useState('');
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -20,12 +21,13 @@ const Signin = () => {
       password: passWord
     };
     try {
-      const response = await axios.post("http://localhost:8080/auth/login", data);
-       console.log("Response received", response.data);
+      const response = await axios.post("http://localhost:8030/auth/login", data);
+      console.log("Response received", response.data);
+      localStorage.setItem('user', response.data);
       signIn(data); // Update authentication state
       navigate('/', { state: { UserInfo: data } });
     } catch (error) {
-      console.error("Error during request", error);
+      setTest("Error during request");
     } finally {
       setIsLoad(false);
     }
@@ -38,6 +40,17 @@ const Signin = () => {
 <div className="flex justify-center">
           <img src="/assets/img/logo1.png" alt="" className="w-52" />
         </div>
+  {
+    test === "Error during request" ?
+        <div className="p-8 bg-white rounded-lg shadow-lg max-w-xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">{test}</h2>
+          <div className="space-y-4">
+          </div>
+        </div>
+        :
+        <div></div>
+  }
+
         {
           isLoad ?
             <div>

@@ -74,8 +74,8 @@ const CreateFichierEntreprise = ({ onBack }) => {
         ...fichierEntreprise,
         montant_de_transaction: parseFloat(fichierEntreprise.montant_de_transaction),
       };
-      console.log(dataToSend);  
-      await axios.post('http://localhost:8080/fichierentreprise/addFichierEntreprise', dataToSend);
+      // console.log(dataToSend);
+      await axios.post('http://localhost:8030/fichierentreprise/addFichierEntreprise', dataToSend);
       onBack();
     } catch (error) {
       console.error('Error creating fichier entreprise', error);

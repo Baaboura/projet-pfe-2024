@@ -10,7 +10,7 @@ const EditFichierEntreprise = ({ id, onBack }) => {
 
   const fetchFichierEntreprise = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/fichierentreprise/getFichierEntreprise/${id}`);
+      const response = await axios.get(`http://localhost:8030/fichierentreprise/getFichierEntreprise/${id}`);
       setFichierEntreprise(response.data);
     } catch (error) {
       console.error('Error fetching fichier entreprise', error);
@@ -19,7 +19,7 @@ const EditFichierEntreprise = ({ id, onBack }) => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8080/fichierentreprise/updateFichierEntreprise/${id}`, fichierEntreprise);
+      await axios.put(`http://localhost:8030/fichierentreprise/updateFichierEntreprise/${id}`, fichierEntreprise);
       onBack();
     } catch (error) {
       console.error('Error updating fichier entreprise', error);

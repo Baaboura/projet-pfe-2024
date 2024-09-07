@@ -16,17 +16,17 @@ const EspaceBanque = () => {
 
   const fetchFichierBancaires = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/fichierbancaire/getAllFichierBancaires');
-      console.log('Fetched data:', response.data);
+      const response = await axios.get('http://localhost:8030/fichierbancaire/getAllFichierBancaires');
+      // console.log('Fetched data:', response.data);
       setFichierBancaires(response.data);
     } catch (error) {
-      console.error('Error fetching data', error);
+      // console.error('Error fetching data', error);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/fichierbancaire/deleteFichierBancaire/${id}`);
+      await axios.delete(`http://localhost:8030/fichierbancaire/deleteFichierBancaire/${id}`);
       fetchFichierBancaires();
     } catch (error) {
       console.error('Error deleting fichier bancaire', error);

@@ -16,8 +16,8 @@ const EspaceEntreprise = () => {
 
   const fetchFichierEntreprises = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/fichierentreprise/getAllFichierEntreprise');
-      console.log('Fetched data:', response.data);
+      const response = await axios.get('http://localhost:8030/fichierentreprise/getAllFichierEntreprise');
+      // console.log('Fetched data:', response.data);
       setFichierEntreprises(response.data);
     } catch (error) {
       console.error('Error fetching data', error);
@@ -26,7 +26,7 @@ const EspaceEntreprise = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/fichierentreprise/deleteFichierEntreprise/${id}`);
+      await axios.delete(`http://localhost:8030/fichierentreprise/deleteFichierEntreprise/${id}`);
       fetchFichierEntreprises();
     } catch (error) {
       console.error('Error deleting fichier entreprise', error);

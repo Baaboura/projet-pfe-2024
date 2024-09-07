@@ -34,11 +34,11 @@ function Marche() {
     ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com");
 
     ws.current.onopen = () => {
-      console.log("WebSocket Connected");
+      // console.log("WebSocket Connected");
     };
 
     ws.current.onclose = () => {
-      console.log("WebSocket Disconnected");
+      // console.log("WebSocket Disconnected");
     };
 
     return () => {
@@ -111,7 +111,7 @@ function Marche() {
   }, [pair]);
 
   const handleSelect = (e) => {
-    console.log(e);
+    // console.log(e);
     setPair(e.target.value);
     
   };
